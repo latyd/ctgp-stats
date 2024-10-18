@@ -1,43 +1,31 @@
 <script setup>
-import { defineProps, ref, computed } from 'vue';
+import { reactive, defineProps, onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
-import Button from 'primevue/button'
-import 'primeicons/primeicons.css'
+import axios from 'axios';
+import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 
-const props = defineProps({
-  time: Object,
+import gcn from '@/assets/img/controllers/gcn.png'
+import classic from '@/assets/img/controllers/classic.png'
+import nunchuk from '@/assets/img/controllers/nunchuk.png'
+import wheel from '@/assets/img/controllers/wiiwheel.png'
+
+const state = reactive({
+    stats: [],
+    isLoading: true
 });
 
-const getCategory = (category, cc) => {
-    switch (category) {
-        case 0:
-            return "150cc No-Shortcut"
-        case 1:
-            return "150cc Glitch"
-        case 2:
-            return "150cc No-Shortcut"
-        case 3:
-            return "150cc TAS"
-        case 4:
-            return "200cc No-Shortcut"
-        case 5:
-            return "200cc Glitch"
-        case 6:
-            return "200cc No-Shortcut"
-        case 7:
-            return "200cc TAS"
-        case 16:
-            return "150cc Shortcut"
-        case 20:
-            return "200cc Shortcut"
-        default:
-            if (cc == true) {
-                return "200cc No-Shortcut"
-            } else {
-                return "150cc No-Shortcut"
-            }
-    }   
-} 
+const getControllerImage = (controllerId) => {
+    switch(controllerId) {
+        case(0):
+            return wheel
+        case(1):
+            return nunchuk
+        case(2):
+            return classic
+        case(3):
+            return gcn
+    }
+}
 
 const getFlagEmoji = (region) => {
     switch(region) {
@@ -168,36 +156,70 @@ const getFlagEmoji = (region) => {
         default: return ''
     }
 }
-const getPlayerId = (href) => {
-    let part1 = href.substring(9, 11)
-    let part2 = href.substring(12, href.length-5)
-    return part1 + part2
-}
 
-const formatDate = (isoString) => {
-    const date = new Date(isoString);
-    return date.toLocaleString();
-}
+onMounted(async () => {
+    try {
+        const response = await axios.get('https://domutay.github.io/ctgp-stats-database/ctgp-stats.json');
+        const ctgpStats = await response.data
+        const entries = Object.entries(ctgpStats);
+        entries.sort(([, a], [, b]) => b.score - a.score);
+        state.stats = Object.fromEntries(entries);     
+    } catch (error) {
+        console.error('Error fetching times', error)
+    } finally {
+        state.isLoading = false;
+    }
+})
+
 </script>
 
 <template>
-  <div class="wrCard overflow-auto bg-gray-800 rounded-xl shadow-xl outline outline-offset-4 outline-2 ring-4 ring-indigo-300 hover:-translate-y-1 hover:scale-103 hover:bg-gray-700 duration-300">
-    <div class="p-4">
-      <div class="mb-6 flex items-center justify-between" id="miiNames">
-        <div>
-            <div class="text-neutral-700 font-bold my-2 text-xl">{{ time.trackName }}</div>
-            <div class="text-neutral-700 font-semibold my-2 text-medium">{{ getCategory(time.categoryId, time["200cc"]) }}</div>
-            <div class="text-neutral-700 text-xl font-bold">{{ time.finishTimeSimple }}</div>
-            <div class="text-white text-2xl font-bold my-2" id="miiName">{{ getFlagEmoji(time.country) + ' ' + time.player }}</div>
-            <div class="text-neutral-700 text-xs font-semibold">{{ formatDate(time.dateSet) }}</div>
+    <section class="px-32 py-10">
+        <h2 class="text-5xl font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-500 bg-clip-text text-transparent uppercase italic ">
+            CTGP Player Leaderboard
+        </h2>
+        <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
+            <ScaleLoader :color="'white'"/>
         </div>
-        <img class="h-24 w-auto" :src="'https://www.chadsoft.co.uk/time-trials' + time._links.item.href.substring(0, time._links.item.href.length-5) + '.mii'" />
-      </div>
-
-      <!-- <div class="border border-gray-100 mb-3"></div> -->
-      <Button as="a" label="Ghost Link" icon="pi pi-angle-right" rounded :href="'https://www.chadsoft.co.uk/time-trials' + time._links.item.href.substring(0, time._links.item.href.length-5) + '.html'"/>
-      <Button as="RouterLink" label="Profile" icon="pi pi-user" class="mx-3" rounded :to="'/player/' + getPlayerId(time._links.player.href)"/>
-
-    </div>
-  </div>
+        <div class="wrCard overflow-auto bg-gray-800 rounded-xl shadow-xl relative outline outline-offset-2 outline-1 ring ring-indigo-300">
+            <div class="shadow-sm my-8 ">
+                <table class="table-auto w-full border-collapse mx-auto">
+                    <thead class="text-neutral-600">
+                        <tr class="border-b-2 border-indigo-200 font-medium text-left ">
+                            <th scope="col" class="px-6 py-1">Rank</th>
+                            <th scope="col" class="px-6 py-1">Player</th>
+                            <th scope="col" class="px-6 py-1">Controller</th>
+                            <th scope="col" class="px-6 py-1">BKTs</th>
+                            <th scope="col" class="px-6 py-1">Tops</th>
+                            <th scope="col" class="px-6 py-1">Stars</th>
+                            <th scope="col" class="px-6 py-1">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(player, key, index) in state.stats" :key="index" class="border-b border-indigo-100 font-medium text-neutral-600 text-left">
+                            <td class="px-6 py-1" v-html="index + 1"></td>
+                            <td class="px-6 py-1 font-bold" id="miiNames">
+                                <RouterLink :to="'/player/' + key">
+                                    <span>{{ getFlagEmoji(player.country) + " " + player.name }}</span>
+                                </RouterLink>
+                            </td>
+                            <td class="px-6 py-1">
+                                <img class="h-7" :src="getControllerImage(player.controller)"/>
+                            </td>
+                            <td class="px-6 py-1">{{ player.bkts }}</td>
+                            <td class="px-6 py-1">{{ player.tops }}</td>
+                            <td class="px-6 py-1">
+                                <span style="color: #a88923">{{ player.stars.gold }}</span>
+                                /
+                                <span style="color: silver">{{ player.stars.silver }}</span>
+                                /
+                                <span style="color: #bf6439">{{ player.stars.bronze }}</span>
+                            </td>
+                            <td class="px-6 py-1 font-bold">{{ player.score }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 </template>

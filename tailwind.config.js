@@ -89,7 +89,11 @@ module.exports = {
       },
       fontFamily: {
         'serif': ['Gentium Plus']
-      }
+      },
+      gridTemplateColumns: {
+        '70/30': '60% 38%'
+      },
+      
     },
   },
   plugins: [animate],

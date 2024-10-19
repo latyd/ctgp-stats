@@ -183,7 +183,7 @@ const formatDate = (isoString) => {
 <template>
   <div class="wrCard overflow-auto bg-gray-800 rounded-xl shadow-xl outline outline-offset-4 outline-2 ring-4 ring-indigo-300 hover:-translate-y-1 hover:scale-103 hover:bg-gray-700 duration-300">
     <div class="p-4">
-      <div class="mb-6 flex items-center justify-between" id="miiNames">
+      <div class="mkwMenu mb-6 flex items-center justify-between">
         <div>
             <div class="text-neutral-700 font-bold my-2 text-xl">{{ time.trackName }}</div>
             <div class="text-neutral-700 font-semibold my-2 text-medium">{{ getCategory(time.categoryId, time["200cc"]) }}</div>

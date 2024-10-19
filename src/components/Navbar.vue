@@ -12,7 +12,7 @@ const isActiveLink = (routePath) => {
 </script>
 
 <template>
-    <nav class="bg-black border-b-2 border-orange-400">
+    <nav class="bg-black border-b-2 border-orange-400" id="navbar">
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="flex h-20 items-center justify-between">
           <div
@@ -29,12 +29,12 @@ const isActiveLink = (routePath) => {
               <div class="flex space-x-2">
                 <RouterLink
                   to="/"
-                  :class="[isActiveLink('/') ? 'bg-neutral-900' : 'hover:bg-neutral-900 hover:text-white', 'text-white', 'px-3', 'py-2', 'rounded-full', 'uppercase', 'italic', 'font-bold']"
+                  :class="[isActiveLink('/') ? 'bg-zinc-700' : 'hover:bg-zinc-800 hover:text-white', 'text-white', 'px-3', 'py-2', 'rounded-full', 'uppercase', 'italic', 'font-bold']"
                   >Home</RouterLink
                 >
                 <RouterLink
                   to="/leaderboard"
-                  :class="[isActiveLink('/leaderboard') ? 'bg-neutral-900' : 'hover:bg-neutral-900 hover:text-white', 'text-white', 'px-3', 'py-2', 'rounded-full', 'uppercase', 'italic', 'font-bold']"
+                  :class="[isActiveLink('/leaderboard') ? 'bg-zinc-700' : 'hover:bg-zinc-800 hover:text-white', 'text-white', 'px-3', 'py-2', 'rounded-full', 'uppercase', 'italic', 'font-bold']"
                   >Leaderboard</RouterLink
                 >
               </div>

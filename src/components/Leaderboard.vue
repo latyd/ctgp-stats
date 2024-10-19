@@ -174,17 +174,17 @@ onMounted(async () => {
 </script>
 
 <template>
-    <section class="px-32 py-10">
-        <h2 class="text-5xl font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-500 bg-clip-text text-transparent uppercase italic ">
+    <section class="lg:px-32 sm:px-6 py-10">
+        <h2 class="lg:text-5xl sm:text-4xl font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-500 bg-clip-text text-transparent uppercase italic ">
             CTGP Player Leaderboard
         </h2>
         <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
             <ScaleLoader :color="'white'"/>
         </div>
-        <div class="wrCard overflow-auto bg-gray-800 rounded-xl shadow-xl relative outline outline-offset-2 outline-1 ring ring-indigo-300">
+        <div class="wrCard overflow-auto bg-gray-800 rounded-xl shadow-xl relative outline outline-offset-4 outline-1 ring-4 ring-indigo-300">
             <div class="shadow-sm my-8 ">
                 <table class="table-auto w-full border-collapse mx-auto">
-                    <thead class="text-neutral-600">
+                    <thead class="mkwMenu text-neutral-600">
                         <tr class="border-b-2 border-indigo-200 font-medium text-left ">
                             <th scope="col" class="px-6 py-1">Rank</th>
                             <th scope="col" class="px-6 py-1">Player</th>

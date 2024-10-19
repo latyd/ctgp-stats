@@ -92,8 +92,12 @@ html, body {
   background-attachment: fixed;
 }
 
-#miiNames {
+.mkwMenu {
   font-family: "MKW", "CTMKF";
+}
+
+#miiNames {
+  font-family: Arial, Helvetica, sans-serif, "CTMKF";
 }
 
 .wrCard {
@@ -106,6 +110,11 @@ html, body {
         var(--colour2) 270deg
     );
     background-size: var(--size) var(--size);
+}
+
+#navbar {
+  background-size: 100px;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuX1BOcVU0SyIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjUuNSIgaGVpZ2h0PSI1LjUiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg5MCkiPjxsaW5lIHgxPSIwIiB5PSIwIiB4Mj0iMCIgeTI9IjUuNSIgc3Ryb2tlPSIjMUUxRTFFIiBzdHJva2Utd2lkdGg9IjMiLz48L3BhdHRlcm4+PC9kZWZzPiA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm5fUE5xVTRLKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')
 }
 
 #sidebar {
@@ -124,7 +133,7 @@ html, body {
 }
 
 #miiName {
-  text-shadow:0 0 5px black
+  text-shadow:0 0 3px black
 }
 
 

@@ -24,21 +24,6 @@ const router = createRouter({
       name: 'player',
       component: PlayerView
     },
-    {
-      path: '/mii',
-      name: 'mii',
-      component: MiiView
-    },
-    {
-      path: '/ghost/:ghostId',
-      name: 'ghost',
-      component: GhostView
-    },
-    {
-      path: '/videos',
-      name: 'videos',
-      component: VideosView
-    }
   ]
 })
 

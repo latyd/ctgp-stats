@@ -2,7 +2,6 @@
   "name": "ctgp-stats",
   "version": "0.0.0",
   "private": true,
-  "homepage": "https://domutay.github.io/ctgp-stats",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,6 +15,7 @@
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
     "lucide-vue-next": "^0.452.0",
     "primeicons": "^7.0.0",
     "primevue": "^4.1.0",

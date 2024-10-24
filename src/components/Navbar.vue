@@ -37,6 +37,11 @@ const isActiveLink = (routePath) => {
                   :class="[isActiveLink('/leaderboard') ? 'bg-zinc-700' : 'hover:bg-zinc-800 hover:text-white', 'text-white', 'px-3', 'py-2', 'rounded-full', 'uppercase', 'italic', 'font-bold']"
                   >Leaderboard</RouterLink
                 >
+                <RouterLink
+                  to="/mii"
+                  :class="[isActiveLink('/mii') ? 'bg-zinc-700' : 'hover:bg-zinc-800 hover:text-white', 'text-white', 'px-3', 'py-2', 'rounded-full', 'uppercase', 'italic', 'font-bold']"
+                  >Mii</RouterLink
+                >
               </div>
             </div>
           </div>

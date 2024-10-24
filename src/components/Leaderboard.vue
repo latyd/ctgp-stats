@@ -3,6 +3,8 @@ import { reactive, defineProps, onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
 import axios from 'axios';
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
+import InputText from 'primevue/inputtext';
+import Podium from './Podium.vue';
 
 import gcn from '@/assets/img/controllers/gcn.png'
 import classic from '@/assets/img/controllers/classic.png'
@@ -11,7 +13,8 @@ import wheel from '@/assets/img/controllers/wiiwheel.png'
 
 const state = reactive({
     stats: [],
-    isLoading: true
+    isLoading: true,
+    miis: []
 });
 
 const getControllerImage = (controllerId) => {
@@ -157,13 +160,37 @@ const getFlagEmoji = (region) => {
     }
 }
 
+
+const getProfileURL = (playerId) => {
+    return "https://tt.chadsoft.co.uk/players/" + playerId.slice(0, 2) + "/" + playerId.slice(2) + ".json";
+}
+
+const getMiiUrl = (href) => {
+    let miiUrl = href.substring(0, href.length - 4)
+    return "https://www.chadsoft.co.uk/time-trials" + miiUrl + ".mii"
+}
+
+const getPlayerMii = async (playerURL) => {
+    const response = await axios.get(playerURL)
+    const playerData = await response.data
+    console.log(playerData.ghosts[playerData.ghosts.length-1]['href'])
+    const href = playerData.ghosts[playerData.ghosts.length-1]['href']
+    return getMiiUrl(href)
+}
+
 onMounted(async () => {
     try {
         const response = await axios.get('https://domutay.github.io/ctgp-stats-database/ctgp-stats.json');
         const ctgpStats = await response.data
         const entries = Object.entries(ctgpStats);
         entries.sort(([, a], [, b]) => b.score - a.score);
-        state.stats = Object.fromEntries(entries);     
+        state.stats = Object.fromEntries(entries); 
+        // for (let i = 0; i < 3; i++) {
+        //     let profileURL = getProfileURL(entries[i][0])
+        //     state.miis.push(await getPlayerMii(profileURL))
+        // }
+        console.log(miis)
+        // const first = await axios.get(`https://tt.chadsoft.co.uk/`)
     } catch (error) {
         console.error('Error fetching times', error)
     } finally {
@@ -174,16 +201,14 @@ onMounted(async () => {
 </script>
 
 <template>
-    <section class="lg:px-32 sm:px-6 py-10">
-        <h2 class="lg:text-5xl sm:text-4xl font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-500 bg-clip-text text-transparent uppercase italic ">
-            CTGP Player Leaderboard
-        </h2>
+
         <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
             <ScaleLoader :color="'white'"/>
         </div>
+
         <div class="wrCard overflow-auto bg-gray-800 rounded-xl shadow-xl relative outline outline-offset-4 outline-1 ring-4 ring-indigo-300">
             <div class="shadow-sm my-8 ">
-                <table class="table-auto w-full border-collapse mx-auto">
+                <table class="table-auto w-full border-collapse mx-auto" id="playerTable">
                     <thead class="mkwMenu text-neutral-600">
                         <tr class="border-b-2 border-indigo-200 font-medium text-left ">
                             <th scope="col" class="px-6 py-1">Rank</th>
@@ -209,11 +234,11 @@ onMounted(async () => {
                             <td class="px-6 py-1">{{ player.bkts }}</td>
                             <td class="px-6 py-1">{{ player.tops }}</td>
                             <td class="px-6 py-1">
-                                <span style="color: #a88923">{{ player.stars.gold }}</span>
-                                /
-                                <span style="color: silver">{{ player.stars.silver }}</span>
-                                /
-                                <span style="color: #bf6439">{{ player.stars.bronze }}</span>
+                                <span style="color: #a88923" class="lg:text-sm sm:text-xs">{{ player.stars.gold + "/" }}</span>
+                                
+                                <span style="color: silver" class="lg:text-sm sm:text-xs">{{ player.stars.silver + "/" }}</span>
+                                
+                                <span style="color: #bf6439" class="lg:text-sm sm:text-xs">{{ player.stars.bronze }}</span>
                             </td>
                             <td class="px-6 py-1 font-bold">{{ player.score }}</td>
                         </tr>
@@ -221,5 +246,4 @@ onMounted(async () => {
                 </table>
             </div>
         </div>
-    </section>
 </template>

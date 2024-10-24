@@ -26,7 +26,7 @@ onMounted(async () => {
 <template>
     <section class="px-3 py-10">
         <div class="container-xl lg:container m-auto overflow-auto">
-            <h1 class="text-5xl font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-500 bg-clip-text text-transparent uppercase italic ">
+            <h1 class="text-5xl font-sans font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-500 bg-clip-text text-transparent uppercase italic ">
                 Recent Times
             </h1>
             <p class="text-sm text-white mb-6 text-center">
@@ -39,7 +39,7 @@ onMounted(async () => {
 
             <!-- Show job listing when done loading -->
             <div v-else class="columns-1 md:columns-3 overflow-auto">
-                <h2 class="text-2xl font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-600 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
+                <h2 class="text-2xl font-sans font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-600 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
                     Regular Tracks
                 </h2>
                 <div v-for="time in state.times" class="mb-6 mx-3">
@@ -47,7 +47,7 @@ onMounted(async () => {
                         <WRListing :time="time"/>
                     </div>
                 </div>
-                <h2 class="text-2xl font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-600 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
+                <h2 class="text-2xl font-sans font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-600 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
                     Custom Tracks
                 </h2>
                 <div v-for="time in state.times" class="mb-6 mx-3">
@@ -55,7 +55,7 @@ onMounted(async () => {
                         <WRListing :time="time"/>
                     </div>
                 </div>
-                <h2 class="text-2xl font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-600 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
+                <h2 class="text-2xl font-sans font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-600 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
                     200cc
                 </h2>
                 <div v-for="time in state.times" class="mb-6 mx-3">

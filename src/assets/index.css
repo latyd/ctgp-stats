@@ -136,4 +136,17 @@ html, body {
   text-shadow:0 0 3px black
 }
 
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.list { 
+	position: relative; 
+	display: inline-block; 
+	padding-left: 1em; 
+	left: 50%; 
+	transform: translateX(-50%); 
+} 

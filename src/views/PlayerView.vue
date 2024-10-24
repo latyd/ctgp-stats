@@ -25,6 +25,7 @@ const state = reactive({
     cc: false,
 })
 
+
 const getMiiUrl = (href) => {
     miiUrl = href.substring(0, href.length - 4)
     return "https://www.chadsoft.co.uk/time-trials" + miiUrl + ".mii"
@@ -278,14 +279,14 @@ onMounted(async () => {
                     <div
                         class="wrCard bg-gray-800 rounded-xl shadow-xl relative outline outline-offset-4 outline-2 ring-4 ring-indigo-300 p-6">
                         <h1
-                            class="text-3xl font-black mb-6 text-center bg-gradient-to-b from-slate-300 to-slate-500 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
+                            class="text-3xl font-sans font-black mb-6 text-center bg-gradient-to-b from-slate-300 to-slate-500 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
                             Personal Bests
                         </h1>
                         <div class="text-neutral-600 flex align-middle justify-center md:justify-start mb-5">
                             <p class="font-bold">
                                 Engine Class:
                             </p>
-                            <ToggleButton @click="toggleCc" v-model="unchecked" onLabel="200cc" offLabel="150cc" class="ml-2 h-7 w-14"/>
+                            <ToggleButton @click="toggleCc" v-model="unchecked" onLabel="200cc" offLabel="150cc" class="ml-2 h-7 w-14 accent-slate-600"/>
                             <!-- <button @click="toggleCc"
                                 class="text-sky-500 hover:text-sky-600 mb-5 px-1 transition ease-in-out hover:scale-105 duration-300">
                                 {{ state.cc ? '200cc' : '150cc' }}
@@ -366,7 +367,7 @@ onMounted(async () => {
                                 <p class="font-bold mr-1">
                                     Stars:
                                 </p>
-                                <span style="color: gold">{{ state.player.stars.gold }}&nbsp;</span>
+                                <span style="color: #a88923">{{ state.player.stars.gold }}&nbsp;</span>
                                 /&nbsp;
                                 <span style="color: silver">{{ state.player.stars.silver }}&nbsp;</span>
                                 /&nbsp;
@@ -380,7 +381,7 @@ onMounted(async () => {
                         <!-- <div> -->
                             <div class="text-neutral-600 mb-4 align-middle justify-center md:justify-start">
                                 <h1
-                                    class="text-3xl font-black mb-6 text-center bg-gradient-to-b from-slate-300 to-slate-500 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
+                                    class="text-3xl font-sans font-black mb-6 text-center bg-gradient-to-b from-slate-300 to-slate-500 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
                                     Mii Names
                                 </h1>
                                 <p class="font-medium text-center" id="miiNames">{{ listMiiNames(state.player.miiNames) }}</p>
@@ -393,7 +394,7 @@ onMounted(async () => {
     </section>
     <div v-else class="text-center text-gray-500 py-12">
         <h2
-            class="text-3xl font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-500 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
+            class="text-3xl font-sans font-black mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-500 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
             Loading Player Profile
         </h2>
         <p class="text-sm text-gray-300 mb-6 text-center">

@@ -1,10 +1,13 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import LeaderboardView from '@/views/LeaderboardView.vue'
 import PlayerView from '@/views/PlayerView.vue'
+import MiiView from '@/views/MiiView.vue'
+import GhostView from '@/views/VideosView.vue'
+import VideosView from '@/views/VideosView.vue'
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -20,6 +23,21 @@ const router = createRouter({
       path: '/player/:playerId',
       name: 'player',
       component: PlayerView
+    },
+    {
+      path: '/mii',
+      name: 'mii',
+      component: MiiView
+    },
+    {
+      path: '/ghost/:ghostId',
+      name: 'ghost',
+      component: GhostView
+    },
+    {
+      path: '/videos',
+      name: 'videos',
+      component: VideosView
     }
   ]
 })

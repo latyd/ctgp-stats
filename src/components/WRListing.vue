@@ -188,7 +188,7 @@ const formatDate = (isoString) => {
             <div class="text-neutral-700 font-bold my-2 text-xl">{{ time.trackName }}</div>
             <div class="text-neutral-700 font-semibold my-2 text-medium">{{ getCategory(time.categoryId, time["200cc"]) }}</div>
             <div class="text-neutral-700 text-xl font-bold">{{ time.finishTimeSimple }}</div>
-            <div class="text-white text-2xl font-bold my-2" id="miiName">{{ getFlagEmoji(time.country) + ' ' + time.player }}</div>
+            <div class="font-sans text-white text-2xl font-bold my-2" id="miiName">{{ getFlagEmoji(time.country) + ' ' + time.player }}</div>
             <div class="text-neutral-700 text-xs font-semibold">{{ formatDate(time.dateSet) }}</div>
         </div>
         <img class="h-24 w-auto" :src="'https://www.chadsoft.co.uk/time-trials' + time._links.item.href.substring(0, time._links.item.href.length-5) + '.mii'" />

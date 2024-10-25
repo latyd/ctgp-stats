@@ -16,7 +16,7 @@ import Podium from '@/components/Podium.vue';
                     </h2>
                     <div class="list py-6 text-neutral-600">
                         <li>Player must be top 10 on at least one track to be listed</li>
-                        <li>Separate consoles are not accounted for</li>
+                        <li>Separate consoles are not accounted for (at the moment)</li>
                     </div>
                 </div>
             </div>

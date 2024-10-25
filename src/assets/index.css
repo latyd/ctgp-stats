@@ -4,7 +4,7 @@
 
 :root {
   --colour1: #ffffff;
-  --colour2: rgb(247, 249, 251);
+  --colour2: #f7f9fb;
   --size: 40px;
 }
  
@@ -101,8 +101,6 @@ html, body {
 }
 
 .wrCard {
-  width: 100%;
-    height: 100%;
     background: conic-gradient(
         var(--colour1) 90deg,
         var(--colour2) 90deg 180deg,

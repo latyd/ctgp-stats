@@ -7,7 +7,6 @@ import router from './router'
 import PrimeVue from 'primevue/config'
 import { definePreset } from '@primevue/themes'
 import Aura from '@primevue/themes/aura'
-import Nora from '@primevue/themes/Nora'
 
 const Noir = definePreset(Aura, {
     semantic: {

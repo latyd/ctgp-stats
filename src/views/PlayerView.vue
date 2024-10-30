@@ -5,6 +5,7 @@ import ToggleButton from 'primevue/togglebutton';
 import axios from 'axios';
 import { reactive, onMounted } from 'vue';
 import { useRoute, RouterLink, useRouter } from 'vue-router';
+
 import gcn from '@/assets/img/controllers/gcn.png'
 import classic from '@/assets/img/controllers/classic.png'
 import nunchuk from '@/assets/img/controllers/nunchuk.png'
@@ -12,6 +13,17 @@ import wheel from '@/assets/img/controllers/wiiwheel.png'
 import gold from '@/assets/img/stars/gold_star.png'
 import silver from '@/assets/img/stars/silver_star.png'
 import bronze from '@/assets/img/stars/bronze_star.png'
+
+import first from '@/assets/img/position/1stMKW.png'
+import second from '@/assets/img/position/2ndMKW.png'
+import third from '@/assets/img/position/3rdMKW.png'
+import fourth from '@/assets/img/position/4thMKW.png'
+import fifth from '@/assets/img/position/5thMKW.png'
+import sixth from '@/assets/img/position/6thMKW.png'
+import seventh from '@/assets/img/position/7thMKW.png'
+import eighth from '@/assets/img/position/8thMKW.png'
+import ninth from '@/assets/img/position/9thMKW.png'
+import tenth from '@/assets/img/position/10thMKW.png'
 
 
 const route = useRoute();
@@ -21,6 +33,7 @@ const playerIdURL = playerId.slice(0, 2) + "/" + playerId.slice(2);
 
 const state = reactive({
     player: {},
+    tracks: {},
     isLoading: true,
     cc: false,
 })
@@ -234,6 +247,21 @@ const toggleCc = () => {
     state.cc = !state.cc
 }
 
+const getPlacement = (placement) => {
+    switch (placement) {
+        case 0: return first
+        case 1: return second
+        case 2: return third
+        case 3: return fourth
+        case 4: return fifth
+        case 5: return sixth
+        case 6: return seventh
+        case 7: return eighth
+        case 8: return ninth
+        case 9: return tenth
+    }
+}
+
 const filterSearch = () => {
     // Declare variables
     var input, filter, table, tr, td, i, txtValue;
@@ -261,7 +289,10 @@ onMounted(async () => {
         const response = await axios.get(`https://tt.chadsoft.co.uk/players/${playerIdURL}.json`);
         state.player = response.data
         miiUrl = getMiiUrl(state["player"]["ghosts"][state["player"]["ghosts"].length - 1]["href"])
-        console.log(miiUrl)
+
+        const responseStats = await axios.get('https://domutay.github.io/ctgp-stats-database/ctgp-stats.json');
+        state.tracks = responseStats.data[playerId].tracks;
+
     } catch (error) {
         console.error('Error fetching times', error)
         console.error(playerIdURL)
@@ -376,15 +407,41 @@ onMounted(async () => {
                         </div>
                         <img :src="`${miiUrl}`" class=" w-auto object-right" />
                     </div>
-                    <div class="bg-gray-800 rounded-xl shadow-xl relative outline outline-offset-4 outline-2 ring-4 ring-indigo-300 p-6 flex"
+                    <div class="mb-5 bg-gray-800 rounded-xl shadow-xl relative outline outline-offset-4 outline-2 ring-4 ring-indigo-300 p-6 flex"
                         id="sidebar">
                         <!-- <div> -->
-                            <div class="text-neutral-600 mb-4 align-middle justify-center md:justify-start">
+                            <div class="text-neutral-600 mb-4 align-middle justify-center md:justify-start w-full">
                                 <h1
                                     class="text-3xl font-sans font-black mb-6 text-center bg-gradient-to-b from-slate-300 to-slate-500 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
                                     Mii Names
                                 </h1>
                                 <p class="font-medium text-center" id="miiNames">{{ listMiiNames(state.player.miiNames) }}</p>
+                            </div>
+                        <!-- </div> -->
+                    </div>
+                    <div class="bg-gray-800 rounded-xl shadow-xl relative outline outline-offset-4 outline-2 ring-4 ring-indigo-300 p-6 flex"
+                        id="sidebar">
+                        <!-- <div> -->
+                            <div class="text-neutral-600 mb-4 w-full">
+                                <h1
+                                    class="text-3xl font-sans font-black mb-6 text-center bg-gradient-to-b from-slate-300 to-slate-500 bg-clip-text text-transparent uppercase italic underline decoration-gray-400">
+                                    Top Times
+                                </h1>
+                                <table class="w-full">
+                                    <tbody>
+                                        <tr v-for="(time, index) in state.tracks" class="border-b border-indigo-100">
+                                            <td>
+                                                <img :src="getPlacement(time.placement)" class="h-5"/>
+                                            </td>
+                                            <td class="font-bold">
+                                                {{ index }}
+                                            </td>
+                                            <td class="text-right px-3 text-sm">
+                                                {{ getCategory(time.category) }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         <!-- </div> -->
                     </div>

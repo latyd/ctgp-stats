@@ -5,10 +5,10 @@ import Podium from '@/components/Podium.vue';
 
 <template>
     <div class="title mt-10">
-        <h2 class="lg:text-5xl sm:text-4xl px-6 font-black font-sans mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-500 bg-clip-text text-transparent uppercase italic ">
+        <h2 class="text-3xl sm:text-5xl px-6 font-black font-sans mb-6 text-center bg-gradient-to-b from-slate-50 to-slate-500 bg-clip-text text-transparent uppercase italic ">
             CTGP Player Leaderboard
         </h2>
-        <div>
+        <div class="px-6">
             <div class="wrCard px-10 bg-gray-800 rounded-xl shadow-xl outline outline-offset-4 outline-2 ring-4 ring-indigo-300">
                 <div class="mkwMenu mb-6 items-center justify-between">
                     <h2 class="text-3xl px-6 pt-2 font-black font-sans text-center text-slate-500 uppercase italic ">
@@ -25,7 +25,7 @@ import Podium from '@/components/Podium.vue';
     
     <p class="text-sm text-white mb-6 text-center">
     </p>
-    <section class="lg:px-32 sm:px-6">
+    <section class="px-6 sm:px-32">
         <Leaderboard />
     </section>
 </template>

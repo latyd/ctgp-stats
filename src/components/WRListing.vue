@@ -2,7 +2,6 @@
 import { defineProps, ref, computed } from 'vue';
 import { RouterLink } from 'vue-router';
 import Button from 'primevue/button'
-import 'primeicons/primeicons.css'
 
 const props = defineProps({
   time: Object,
@@ -183,9 +182,9 @@ const formatDate = (isoString) => {
 <template>
   <div class="wrCard overflow-auto bg-gray-800 rounded-xl shadow-xl outline outline-offset-4 outline-2 ring-4 ring-indigo-300 hover:-translate-y-1 hover:scale-103 hover:bg-gray-700 duration-300">
     <div class="p-4">
-      <div class="mkwMenu mb-6 flex items-center justify-between">
+      <div class="mb-6 flex items-center justify-between font-sans">
         <div>
-            <div class="text-neutral-700 font-bold my-2 text-xl">{{ time.trackName }}</div>
+            <div class="text-neutral-700 font-extrabold my-2 text-xl">{{ time.trackName }}</div>
             <div class="text-neutral-700 font-semibold my-2 text-medium">{{ getCategory(time.categoryId, time["200cc"]) }}</div>
             <div class="text-neutral-700 text-xl font-bold">{{ time.finishTimeSimple }}</div>
             <div class="font-sans text-white text-2xl font-bold my-2" id="miiName">{{ getFlagEmoji(time.country) + ' ' + time.player }}</div>

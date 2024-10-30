@@ -10,11 +10,11 @@ import Podium from '@/components/Podium.vue';
         </h2>
         <div class="px-6">
             <div class="wrCard px-10 bg-gray-800 rounded-xl shadow-xl outline outline-offset-4 outline-2 ring-4 ring-indigo-300">
-                <div class="mkwMenu mb-6 items-center justify-between">
+                <div class="font-sans font-semibold mb-6 items-center justify-between">
                     <h2 class="text-3xl px-6 pt-2 font-black font-sans text-center text-slate-500 uppercase italic ">
                         Note
                     </h2>
-                    <div class="list py-6 text-neutral-600">
+                    <div class="list py-4 text-neutral-600">
                         <li>Player must be top 10 on at least one track to be listed</li>
                         <li>Separate consoles are not accounted for (at the moment)</li>
                     </div>
@@ -25,7 +25,7 @@ import Podium from '@/components/Podium.vue';
     
     <p class="text-sm text-white mb-6 text-center">
     </p>
-    <section class="px-6 sm:px-32">
+    <section class="md:px-32 px-6">
         <Leaderboard />
     </section>
 </template>

@@ -7,6 +7,7 @@ import router from './router'
 import PrimeVue from 'primevue/config'
 import { definePreset } from '@primevue/themes'
 import Aura from '@primevue/themes/aura'
+import { $dt } from '@primevue/themes';
 import { inject } from '@vercel/analytics'
 
 inject();
@@ -58,9 +59,6 @@ const Noir = definePreset(Aura, {
         }
     }
 });
-
-
-
 
 const app = createApp(App)
 

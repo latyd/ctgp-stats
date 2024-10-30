@@ -124,7 +124,7 @@ const saveMiiFile = () => {
                 @select="processRkgFile" class="!bg-white !text-black !ring-2 !ring-indigo-300"/>
              </div>
         </div>
-        <div class="wrCard w-1/2 px-16 bg-gray-800 rounded-xl shadow-xl relative outline outline-offset-4 outline-2 ring-4 ring-indigo-300 p-6 text-center md:text-left flex justify-between items-center mb-5">
+        <div class="wrCard md:w-1/2 mx-3 md:px-16 bg-gray-800 rounded-xl shadow-xl relative outline outline-offset-4 outline-2 ring-4 ring-indigo-300 p-6 text-left flex justify-between items-center mb-5">
             <div>
                 <div class="mb-4 flex align-middle justify-center md:justify-start">
                     <!-- <i class="pi pi-user text-xl text-white mr-2 py-2" style="font-size:1.5rem"></i> -->
@@ -139,7 +139,7 @@ const saveMiiFile = () => {
                 </div>
                 <Button v-if="state.miiData" @click="saveMiiFile" label="Download Mii" icon="pi pi-download" class="text-white"/>
             </div>
-            <img :src="state.miiImageUrl || 'https://studio.mii.nintendo.com/miis/image.png?data=000f165d6574777a7f848f9399a6a9b6bbb8bfc6cdd4dbe2f1fc0310181f450c0f161b161c1619151f22292a353b39&width=512&type=face'" class="h-64 w-auto object-right" />
+            <img :src="state.miiImageUrl || 'https://studio.mii.nintendo.com/miis/image.png?data=000f165d6574777a7f848f9399a6a9b6bbb8bfc6cdd4dbe2f1fc0310181f450c0f161b161c1619151f22292a353b39&width=512&type=face'" class="h-48 md:h-64 w-auto object-right" />
         </div>
     </div>
 

@@ -1,3 +1,4 @@
 # ctgp-stats
 
-CTGP Statistics Website
+CTGP Statistics
+
